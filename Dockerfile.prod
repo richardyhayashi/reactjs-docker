@@ -1,0 +1,25 @@
+FROM node:22.3.0-alpine as build
+
+# Set evironment variables.
+ENV LANG=C.UTF-8
+
+# Set working directory.
+WORKDIR /app
+
+# Copy package.json
+COPY /src/package.json .
+
+# Install packages.
+RUN npm install
+
+# Copy directory.
+COPY /src .
+
+# Build.
+RUN npm run build
+
+# Use the nginx images.
+FROM nginx:1.27.0-alpine
+
+# Copy files.
+COPY  --from=build /app/build /usr/share/nginx/html

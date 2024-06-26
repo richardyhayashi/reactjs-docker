@@ -1,0 +1,13 @@
+services:
+  react-app:
+    image: react-app:nginx
+    container_name: react_app_c
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - ${APP_PORT_OUT}:${APP_PORT}
+    environment:
+      - PORT=${APP_PORT}
+    #env_file:
+    #  - ./.env

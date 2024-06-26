@@ -1,0 +1,22 @@
+services:
+  nginx:
+    image: nginx:1.27.0-alpine
+    container_name: nginx_react_app_c
+    ports:
+      - 8080:80
+
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${APP_PORT_OUT}:${APP_PORT}
+    volumes:
+      - ./src:/app:ro
+      - /app/node_modules
+    environment:
+      - PORT=${APP_PORT}
+    #env_file:
+    #  - ./.env
+    depends_on:
+      - nginx
