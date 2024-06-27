@@ -4,6 +4,8 @@ services:
     container_name: nginx_react_app_c
     ports:
       - 8080:80
+    volumes:
+      - ./etc/nginx/config.d:/etc/nginx/config.d
 
   react-app:
     build:
