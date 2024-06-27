@@ -1,5 +1,3 @@
 services:
   react-app:
-    image: ${REACT_HOST}:1.0.0
-    container_name: ${REACT_HOST}_c
     build: .

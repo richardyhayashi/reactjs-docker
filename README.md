@@ -8,6 +8,8 @@ In main project folder:
 
 `$ npx create-react-app src`
 
+* remove git/ in src folder
+
 ####  Start ReactJS App
 
 `$ cd src`
