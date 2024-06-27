@@ -5,19 +5,28 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./etc/nginx/config.d:/etc/nginx/config.d
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d:ro
 
   react-app:
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - ${APP_PORT_OUT}:${APP_PORT}
+      dockerfile: Dockerfile.dev
+      args:
+        # Use user id & group id in .env
+        USER_ID: ${USER_ID:-0}
+        GROUP_ID: ${GROUP_ID:-0}
+    #user: ${USER_ID}:${GROUP_ID}
+    #ports:
+    #  - ${APP_PORT_OUT}:${APP_PORT}
     volumes:
       - ./src:/app:ro
       - /app/node_modules
     environment:
       - PORT=${APP_PORT}
+      # Set the logins and groups identical to host environment
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
     #env_file:
     #  - ./.env
     depends_on:

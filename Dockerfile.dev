@@ -16,7 +16,7 @@ RUN npm install
 COPY /src .
 
 # Document exposed port.
-EXPOSE 3000
+EXPOSE ${PORT}
 
 # Start app.
 CMD ["npm", "start"]
