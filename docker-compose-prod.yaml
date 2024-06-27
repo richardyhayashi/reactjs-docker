@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     ports:
-      - ${APP_PORT_OUT}:${APP_PORT}
+      - ${REACT_PORT_OUT}:${REACT_PORT}
     environment:
-      - PORT=${APP_PORT}
+      - REACT_PORT=${REACT_PORT}
     #env_file:
     #  - ./.env
