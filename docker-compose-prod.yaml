@@ -1,13 +1,13 @@
 services:
   react-app:
-    image: react-app:nginx
-    container_name: react_app_c
+    #image: ${PROJECT_NAME}-prod
     build:
-      context: .
       dockerfile: Dockerfile.prod
+    #container_name: ${PROJECT_NAME}-prod_c
     ports:
       - ${REACT_PORT_OUT}:${REACT_PORT}
     environment:
+      - NODE_ENV=production
       - REACT_PORT=${REACT_PORT}
     #env_file:
     #  - ./.env

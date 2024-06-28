@@ -9,20 +9,21 @@ services:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d:ro
 
   react-app:
+    #image: ${PROJECT_NAME}-dev
     build:
-      context: .
       dockerfile: Dockerfile.dev
       args:
         # Use user id & group id in .env
         USER_ID: ${USER_ID:-0}
         GROUP_ID: ${GROUP_ID:-0}
+    #container_name: ${PROJECT_NAME}-dev_c
     #user: ${USER_ID}:${GROUP_ID}
     restart: unless-stopped
     #ports:
     #  - ${REACT_PORT_OUT}:${REACT_PORT}
     volumes:
       - ./src:/app:ro
-      - /app/node_modules
+      - node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
       - REACT_PORT=${REACT_PORT}
@@ -34,3 +35,6 @@ services:
     #  - ./.env
     depends_on:
       - nginx
+
+volumes:
+  node_modules:
