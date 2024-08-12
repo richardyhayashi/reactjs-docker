@@ -9,30 +9,24 @@ services:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d:ro
       # Default directory.
       #- :/usr/share/nginx/html
+    #env_file:
+    #  - ./.env
 
   react-app:
-    #image: ${PROJECT_NAME}-dev
+    image: ${PROJECT_NAME}-dev
     build:
       dockerfile: Dockerfile.dev
-      args:
-        # Use user id & group id in .env
-        USER_ID: ${USER_ID:-0}
-        GROUP_ID: ${GROUP_ID:-0}
     #container_name: ${PROJECT_NAME}-dev_c
-    #user: ${USER_ID}:${GROUP_ID}
     restart: unless-stopped
     #ports:
     #  - ${REACT_PORT_OUT}:${REACT_PORT}
     volumes:
-      - ./src:/app:ro
+      - ./src:/app
       - node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
+      - REACT_APP_NAME=${PROJECT_NAME}
       - REACT_PORT=${REACT_PORT}
-      # Set the logins and groups identical to host environment
-      - /etc/group:/etc/group:ro
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/shadow:/etc/shadow:ro
     #env_file:
     #  - ./.env
     depends_on:

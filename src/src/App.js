@@ -9,7 +9,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <h2>Hello World!</h2>
+        <h2>{`Hello ${process.env.REACT_APP_NAME}!`}</h2>
+        <h3>Goodbye World!</h3>
         <a
           className="App-link"
           href="https://reactjs.org"

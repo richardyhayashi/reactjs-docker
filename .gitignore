@@ -1,6 +1,7 @@
-# Ignore filees.
+# Ignore files.
 .env
 .trunk
 
 # Ignore folders.
 /node_modules
+/build

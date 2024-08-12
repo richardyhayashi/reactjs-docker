@@ -1,4 +1,5 @@
 # Ignore files.
+#.env
 .git
 .gitignore
 .vscode

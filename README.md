@@ -10,7 +10,7 @@ In main project folder:
 
 * remove git/ in src folder
 
-####  Start ReactJS App
+####  Start ReactJS App Development Server
 
 `$ cd src`
 `$ npm start`
@@ -23,3 +23,25 @@ In main project folder:
 
 * Note: - Creates .git folder.
         - Remove other .git folders.
+
+## Docker
+
+### Create Devlopment Image
+
+* In top folder:
+
+`$ docker compose build`
+
+### Run Development
+
+* In top folder:
+
+`$ docker compose up -d [--build]`
+
+### Enter Container
+
+`$ docker exec -it {container-name|container-id} sh`
+
+## YouTube
+
+* `Docker + ReactJS tutorial: Development to Production workflow + multi-stage builds + docker compose` - `Sanjeev Thiyagarajan`
